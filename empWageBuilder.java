@@ -2,7 +2,7 @@ public class empWageBuilder {
 	public static void main(String[] args) {
 
 		int isPartTime = 1;
-   	int isFullTime = 2;
+   		int isFullTime = 2;
 
 		int empRatePerHour = 20;
 
@@ -12,11 +12,11 @@ public class empWageBuilder {
 		double empCheck = Math.floor(Math.random() * 10) % 3;
 		
 		switch(empCheck){
-			case IS_FULL_TIME:
+			case isFullTime:
 					empHours = 8;
 					System.out.println("Employee is present full-time");
 					break;
-			case IS_PART_TIME:
+			case isPartTime:
 					empHours = 4;
 					System.out.println("Employee is present part-time");
 					break;

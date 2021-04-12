@@ -1,36 +1,40 @@
 public class empWageBuilder {
 
 	public static final int empWagePerHour=20;
-	public static final int workingHours=20;
+	public static final int workingHours=100;
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
+	public static final int workingDays=20;
 
 	public static void main(String[] args) {
 
 		int empHours = 0;
 		int empWage = 0;
+		int totalWorkingDays=0;
 
-		for(int day=1;day<=workingHours;day++)
+		while(empHours<=workingHours && totalWorkingDays<=workingDays)
 		{
+			totalWorkingDays++;
+
 			int empCheck=((int)Math.floor(Math.random()*10))%3;
 
 			switch(empCheck)
 			{
 				case isFullTime:
 						empHours = 8;
-						System.out.println("Employee is present full-time on day " + day);
+						System.out.println("Employee is present full-time on day " + totalWorkingDays);
 						break;
 				case isPartTime:
 						empHours = 4;
-						System.out.println("Employee is present part-time on day " + day);
+						System.out.println("Employee is present part-time on day " + totalWorkingDays);
 						break;
 				default:
 						empHours = 0;
-						System.out.println("Employee is abscent on day " + day);
+						System.out.println("Employee is abscent on day " + totalWorkingDays);
 			}
 			empWage += empHours*empWagePerHour;
-			// System.out.println("Employee's wage on day " + day + " is: " + empWage);
+			empHours += empHours;
 		}
-		System.out.println("Employee's wage per month: " + empWage);
+		System.out.println("Employee's wage for maximum of 100 hours & 20 days: " + empWage);
 	}
 }

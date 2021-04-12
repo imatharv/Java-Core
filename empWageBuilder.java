@@ -12,7 +12,7 @@ public class empWageBuilder {
 		int empWage = 0;
 		int totalWorkingDays=0;
 
-		while(empHours<=workingHours && totalWorkingDays<=workingDays)
+		while(empHours<=workingHours || totalWorkingDays<=workingDays)
 		{
 			totalWorkingDays++;
 
@@ -35,6 +35,6 @@ public class empWageBuilder {
 			empWage += empHours*empWagePerHour;
 			empHours += empHours;
 		}
-		System.out.println("Employee's wage for maximum of 100 hours & 20 days: " + empWage);
+		System.out.println("Employee's wage for maximum of 100 hours or 20 days: " + empWage);
 	}
 }

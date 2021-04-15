@@ -31,7 +31,7 @@ public class empWageBuilder {
 			empWage += empHours * empWagePerHour;
 			empHours += empHours;
 		}
-		System.out.println("Employee's wage for maximum of 100 hours & 20 days: " + empWage);
+		System.out.println("Employee's wage for maximum of 100 hours or 20 days: " + empWage);
 	}
 
 	public static void main(String[] args) {

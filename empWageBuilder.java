@@ -1,5 +1,4 @@
 public class empWageBuilder {
-
 	public static final int empWagePerHour = 20;
 	public static final int workingHours = 100;
 	public static final int isPartTime = 1;

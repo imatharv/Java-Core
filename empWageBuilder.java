@@ -12,7 +12,7 @@ public class empWageBuilder {
 		int empWage = 0;
 		int totalWorkingDays=0;
 
-		while(empHours<=workingHours || totalWorkingDays<=workingDays)
+		while(empHours<=workingHours && totalWorkingDays<=workingDays)
 		{
 			totalWorkingDays++;
 

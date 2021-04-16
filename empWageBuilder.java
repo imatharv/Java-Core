@@ -1,15 +1,15 @@
 public class empWageBuilder {
-	public static void main(String[] args) {
+	ublic static final int empRatePerHour=20;
+	public static final int isPartTime=1;
+	public static final int isFullTime=2;
 
-		int isPartTime = 1;
-   		int isFullTime = 2;
-
+	public static void main(String[] args) 
+	{
 		int empRatePerHour = 20;
-
 		int empHours = 0;
 		int empWage = 0;
 
-		double empCheck = Math.floor(Math.random() * 10) % 3;
+		int empCheck=((int)Math.floor(Math.random()*10))%3;
 		
 		switch(empCheck){
 			case isFullTime:
@@ -23,10 +23,9 @@ public class empWageBuilder {
 			default:
 					empHours = 0;
 					System.out.println("Employee is abscent");
-			}
-
-			empWage = empHours * empWagePerHour;
-			System.out.println("Employee's Wage: " + empWage);
 		}
+
+		empWage = empHours * empRatePerHour;
+		System.out.println("Employee's Wage: " + empWage);
 	}
 }

@@ -1,5 +1,5 @@
 public class empWageBuilder {
-	ublic static final int empRatePerHour=20;
+	public static final int empRatePerHour=20;
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
 

@@ -1,55 +1,57 @@
 public class empWageBuilder {
-	public static final int isPartTime = 1;
-	public static final int isFullTime = 2;
+	public static final int IS_PART_TIME = 1;
+	public static final int IS_FULL_TIME = 2;
 
-	private final String companyName;
-	private final int empWagePerHour;
-	private final int workingHours;
-	private final int workingDays;
+	private final String company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHoursPerMonth;
+	private int totalEmpWage;
 
-	public empWageBuilder(String companyName, int empWagePerHour, int workingHours, int workingDays) {
-		this.companyName = companyName;
-		this.empWagePerHour = empWagePerHour;
-		this.workingDays = workingDays;
-		this.workingHours = workingHours;
+	public empWageBuilder(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+		this.company = company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHoursPerMonth = maxHoursPerMonth;
 	}
 
-	public int calculateWage() {
-		int empHours = 0;
-		int totalWorkingHours = 0;
+	public void computeEmpWage() {
+
+		int empHrs = 0;
+		int totalEmpHrs = 0;
 		int totalWorkingDays = 0;
 
-		while (totalWorkingHours <= workingHours && totalWorkingDays <= workingDays) {
+		while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
 			totalWorkingDays++;
-
-			int empCheck = ((int) Math.floor(Math.random() * 10)) % 3;
-
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
-			case isFullTime:
-				empHours = 8;
-				// System.out.println("Employee is present full-time on day " +
-				// totalWorkingDays);
+			case IS_PART_TIME:
+				empHrs = 4;
 				break;
-			case isPartTime:
-				empHours = 4;
-				// System.out.println("Employee is present part-time on day " +
-				// totalWorkingDays);
+			case IS_FULL_TIME:
+				empHrs = 8;
 				break;
 			default:
-				empHours = 0;
-				// System.out.println("Employee is abscent on day " + totalWorkingDays);
+				empHrs = 0;
 			}
-			totalWorkingHours += empHours;
-			System.out.println("Day: " + totalWorkingDays + "& Working hours: " + empHours);
+			totalEmpHrs += empHrs;
+			System.out.println("Day: " + totalWorkingDays + " ... " + "working hours: " + empHrs);
 		}
-		return totalWorkingHours * empWagePerHour;
+		totalEmpWage = totalEmpHrs * empRatePerHour;
+	}
+
+	@Override
+	public String toString() {
+		return "Total employee wage for " + company + " is " + totalEmpWage + "\n";
 	}
 
 	public static void main(String[] args) {
-		empWageBuilder dmart = new empWageBuilder("Dmart", 10, 2, 10);
-		empWageBuilder walmart = new empWageBuilder("Walmart", 20, 4, 10);
-
-		System.out.println("Total employee's wage of Company: " + dmart.companyName + ": " + dmart.calculateWage());
-		System.out.println("Total employee's wage of Company: " + walmart.companyName + ": " + walmart.calculateWage());
+		System.out.println("\n" + "Employee wage program to save total employee wage for each company.\n");
+		empWageBuilder dmart = new empWageBuilder("DMart", 20, 2, 10);
+		empWageBuilder walmart = new empWageBuilder("Walmart", 10, 4, 20);
+		dmart.computeEmpWage();
+		System.out.println(dmart);
+		walmart.computeEmpWage();
+		System.out.println(walmart);
 	}
 }

@@ -5,7 +5,7 @@
 <br />
 
 The repository contains a core java program to calculate the daily as well as total employee wage for one or more companies using encapsulation, inheritance, interface with array list as well as interface with hash map.
-
+ 
 <br />
 
 > _Every branch contains step wise code. And the master branch is same as of the last branch._

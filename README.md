@@ -43,15 +43,6 @@ The repository contains a core java program to calculate the daily as well as to
 
 <br />
 <br />
-
-### Connect with me:
-
-[<img align="left" alt="atharva-a-joshi | LinkedIn" width="27.5px"  style="margin:6px  0px" src="https://image.flaticon.com/icons/png/128/179/179330.png" />][linkedin]
-
-[<img align="left" alt="the.jpeg.creator | Instagram" width="27.5px" style="margin:0px 10px; border-radius:12.5px" src="https://www.instagram.com/static/images/ico/favicon.ico/36b3ee2d91ed.ico" />][instagram]
-
-<br />
-<br />
 <br />
 
 [instagram]: https://instagram.com/the.jpeg.creator/

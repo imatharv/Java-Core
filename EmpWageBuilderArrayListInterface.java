@@ -1,6 +1,6 @@
 import java.util.*;
 
-interface InterfaceComputeEmpWage {
+interface IComputeEmpWage {
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth);
 
 	public void computeEmpWage();
@@ -27,32 +27,33 @@ class CompanyEmpWage {
 
 	@Override
 	public String toString() {
-		return "Total Employee Wage for Company:" + company + " is: " + totalEmpWage + "\n";
+		return "Total Employee Wage for Company:" + company + " is: " + totalEmpWage;
 	}
 }
 
-public class EmpWageBuilderArray implements InterfaceComputeEmpWage {
-	// Constants
+public class EmpWageBuilderArrayListInterface implements IComputeEmpWage {
+	// Constans
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
 	private int numOfCompany = 0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
 
-	public EmpWageBuilderArray() {
-		companyEmpWageArray = new CompanyEmpWage[5];
+	public EmpWageBuilderArrayListInterface() {
+		companyEmpWageArrayList = new ArrayList<>();
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth) {
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHours, numOfWorkingDays,
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHours, numOfWorkingDays,
 				maxHoursPerMonth);
-		numOfCompany++;
+		companyEmpWageArrayList.add(companyEmpWage);
 	}
 
 	public void computeEmpWage() {
-		for (int i = 0; i < numOfCompany; i++) {
-			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+		for (int i = 0; i < companyEmpWageArrayList.size(); i++) {
+			CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
+			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+			System.out.println(companyEmpWage);
 		}
 	}
 
@@ -80,10 +81,9 @@ public class EmpWageBuilderArray implements InterfaceComputeEmpWage {
 	}
 
 	public static void main(String[] args) {
-		EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
-		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 40);
-		empWageBuilder.addCompanyEmpWage("Walmart", 20, 30, 50);
+		EmpWageBuilderArrayListInterface empWageBuilder = new EmpWageBuilderArrayListInterface();
+		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
+		empWageBuilder.addCompanyEmpWage("Walmart", 20, 30, 100);
 		empWageBuilder.computeEmpWage();
 	}
-
 }

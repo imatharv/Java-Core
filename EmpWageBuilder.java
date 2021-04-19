@@ -2,8 +2,8 @@ import java.util.*;
 
 interface InterfaceComputeEmpWage {
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth);
-
 	public void computeEmpWage();
+	public int getTotalWage(String company);
 }
 
 class CompanyEmpWage {
@@ -19,6 +19,7 @@ class CompanyEmpWage {
 		this.empRatePerHours = empRatePerHours;
 		this.numOfWorkingDays = numOfWorkingDays;
 		this.maxHoursPerMonth = maxHoursPerMonth;
+		totalEmpWage = 0;
 	}
 
 	public void setTotalEmpWage(int totalEmpWage) {
@@ -31,24 +32,25 @@ class CompanyEmpWage {
 	}
 }
 
-public class EmpWageBuilderArrayListInterface implements InterfaceComputeEmpWage {
+public class EmpWageBuilder implements InterfaceComputeEmpWage {
 	// Constants
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
 	private int numOfCompany = 0;
 	private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
-	private ArrayList<Integer> dailyWageList;
+	private Map<String, CompanyEmpWage> companyToEmpWageMap;;
 
-	public EmpWageBuilderArrayListInterface() {
+	public EmpWageBuilder() {
 		companyEmpWageArrayList = new ArrayList<>();
-		dailyWageList = new ArrayList<>();
+		companyToEmpWageMap = new HashMap<>();
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth) {
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRatePerHours, numOfWorkingDays,
 				maxHoursPerMonth);
 		companyEmpWageArrayList.add(companyEmpWage);
+		companyToEmpWageMap.put(company, companyEmpWage);
 	}
 
 	public void computeEmpWage() {
@@ -59,10 +61,9 @@ public class EmpWageBuilderArrayListInterface implements InterfaceComputeEmpWage
 		}
 	}
 
-	public void computeDailyWage() {
-		for (int j = 0; j < dailyWageList.size(); j++) {
-			System.out.println("Daily wage of employee is: " + dailyWageList.get(j));
-		}
+	@Override
+	public int getTotalWage(String company) {
+		return companyToEmpWageMap.get(company).totalEmpWage;
 	}
 
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
@@ -82,8 +83,6 @@ public class EmpWageBuilderArrayListInterface implements InterfaceComputeEmpWage
 			default:
 				empHrs = 0;
 			}
-			int dailyWage = empHrs * companyEmpWage.empRatePerHours;
-			dailyWageList.add(dailyWage);
 			totalEmpHrs += empHrs;
 			System.out.println("Day: " + totalWorkingDays + " ... " + "Employee Hours: " + empHrs);
 		}
@@ -91,10 +90,10 @@ public class EmpWageBuilderArrayListInterface implements InterfaceComputeEmpWage
 	}
 
 	public static void main(String[] args) {
-		EmpWageBuilderArrayListInterface empWageBuilder = new EmpWageBuilderArrayListInterface();
-		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 50);
-		empWageBuilder.addCompanyEmpWage("Walmart", 10, 30, 50);
+		EmpWageBuilder empWageBuilder = new EmpWageBuilder();
+		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
+		empWageBuilder.addCompanyEmpWage("Walmart", 10, 4, 50);
 		empWageBuilder.computeEmpWage();
-		empWageBuilder.computeDailyWage();
+		System.out.println("Total wage for Walmart company: " + empWageBuilder.getTotalWage("Walmart"));
 	}
 }

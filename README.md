@@ -8,7 +8,7 @@ The repository contains a core java program to calculate the daily as well as to
 
 <br />
 
-> _Every branch contains step wise code. And the master branch is same as of the last branch._
+> #####_Every branch contains step wise code. And the master branch is same as of the last branch._
 
 
 ### Branching details,

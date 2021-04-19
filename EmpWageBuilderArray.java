@@ -1,3 +1,11 @@
+import java.util.*;
+
+interface InterfaceComputeEmpWage {
+	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth);
+
+	public void computeEmpWage();
+}
+
 class CompanyEmpWage {
 
 	public final String company;
@@ -19,11 +27,11 @@ class CompanyEmpWage {
 
 	@Override
 	public String toString() {
-		return "Total Employee Wage for Company: " + company + " is: " + totalEmpWage + "\n";
+		return "Total Employee Wage for Company:" + company + " is: " + totalEmpWage + "\n";
 	}
 }
 
-public class EmpWageBuilderArray {
+public class EmpWageBuilderArray implements InterfaceComputeEmpWage {
 	// Constants
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
@@ -41,7 +49,7 @@ public class EmpWageBuilderArray {
 		numOfCompany++;
 	}
 
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for (int i = 0; i < numOfCompany; i++) {
 			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
 			System.out.println(companyEmpWageArray[i]);
@@ -73,8 +81,9 @@ public class EmpWageBuilderArray {
 
 	public static void main(String[] args) {
 		EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
-		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
-		empWageBuilder.addCompanyEmpWage("Walmart", 10, 4, 50);
+		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 40);
+		empWageBuilder.addCompanyEmpWage("Walmart", 20, 30, 50);
 		empWageBuilder.computeEmpWage();
 	}
+
 }

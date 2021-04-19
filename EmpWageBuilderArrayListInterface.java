@@ -1,6 +1,6 @@
 import java.util.*;
 
-interface IComputeEmpWage {
+interface InterfaceComputeEmpWage {
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth);
 
 	public void computeEmpWage();
@@ -27,20 +27,22 @@ class CompanyEmpWage {
 
 	@Override
 	public String toString() {
-		return "Total Employee Wage for Company:" + company + " is: " + totalEmpWage;
+		return "Total Employee Wage for Company:" + company + " is: " + totalEmpWage + "\n";
 	}
 }
 
-public class EmpWageBuilderArrayListInterface implements IComputeEmpWage {
-	// Constans
+public class EmpWageBuilderArrayListInterface implements InterfaceComputeEmpWage {
+	// Constants
 	public static final int IS_PART_TIME = 1;
 	public static final int IS_FULL_TIME = 2;
 
 	private int numOfCompany = 0;
 	private ArrayList<CompanyEmpWage> companyEmpWageArrayList;
+	private ArrayList<Integer> dailyWageList;
 
 	public EmpWageBuilderArrayListInterface() {
 		companyEmpWageArrayList = new ArrayList<>();
+		dailyWageList = new ArrayList<>();
 	}
 
 	public void addCompanyEmpWage(String company, int empRatePerHours, int numOfWorkingDays, int maxHoursPerMonth) {
@@ -54,6 +56,12 @@ public class EmpWageBuilderArrayListInterface implements IComputeEmpWage {
 			CompanyEmpWage companyEmpWage = companyEmpWageArrayList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
 			System.out.println(companyEmpWage);
+		}
+	}
+
+	public void computeDailyWage() {
+		for (int j = 0; j < dailyWageList.size(); j++) {
+			System.out.println("Daily wage of employee is: " + dailyWageList.get(j));
 		}
 	}
 
@@ -74,6 +82,8 @@ public class EmpWageBuilderArrayListInterface implements IComputeEmpWage {
 			default:
 				empHrs = 0;
 			}
+			int dailyWage = empHrs * companyEmpWage.empRatePerHours;
+			dailyWageList.add(dailyWage);
 			totalEmpHrs += empHrs;
 			System.out.println("Day: " + totalWorkingDays + " ... " + "Employee Hours: " + empHrs);
 		}
@@ -82,8 +92,9 @@ public class EmpWageBuilderArrayListInterface implements IComputeEmpWage {
 
 	public static void main(String[] args) {
 		EmpWageBuilderArrayListInterface empWageBuilder = new EmpWageBuilderArrayListInterface();
-		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
-		empWageBuilder.addCompanyEmpWage("Walmart", 20, 30, 100);
+		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 50);
+		empWageBuilder.addCompanyEmpWage("Walmart", 10, 30, 50);
 		empWageBuilder.computeEmpWage();
+		empWageBuilder.computeDailyWage();
 	}
 }
